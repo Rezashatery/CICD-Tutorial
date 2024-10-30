@@ -66,3 +66,5 @@ Custom applications for complex tasks, such as checking out a repository or comm
 Job: A set of steps in a workflow that can run independently and in parallel. Jobs are executed on compute machines called runners.
 **simple GHA Workflow Example:**
 A push event can trigger a workflow where a job runs on an Ubuntu Linux runner, performing two steps: checking out the repository and running a Python application.
+**Overview of Components:**
+A GitHub repository contains a workflow file in the .github/workflows directory, defining the workflow triggered by events (like pushes or pull requests). The workflow can execute multiple jobs, which are made up of steps, allowing various actions or scripts to run on the same runner machine and optionally produce output artifacts.
