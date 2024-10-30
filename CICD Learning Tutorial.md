@@ -100,3 +100,35 @@ Allows referencing environment variables or other YAML fields but may not be sup
 Allows storing multiple independent YAML documents within a single file, separated by three dashes (---).
 Useful for organizing related documents together. Each document is a complete YAML structure.**Summary:**
 Review of the symbols covered, emphasizing that chomping indicators follow style indicators in YAML.
+
+### CI Pipeline
+**Introduction to CI Pipeline:**
+The video covers setting up a continuous integration (CI) pipeline using GitHub Actions.Components of GitHub Actions Workflow:
+Define the workflow name (e.g., "CI").
+Specify events that trigger the workflow, such as pushes to the main branch using the on: push block.
+**Jobs in Workflows:**
+A workflow consists of one or more jobs that can run sequentially or in parallel.
+Define a job called "build" that runs on compute machines (runners) specified by the runs-on field.
+Indentation is important for defining the structure.
+Steps are defined using the steps field, which includes a multi-line echo command executed by the runner's shell.
+**Creating a GitHub Repository:**
+Create a new repository on GitHub by navigating to github.com/new.
+Add a Python-based .gitignore file and an appropriate license before creating the repository.
+**Enabling GitHub Actions:**
+Ensure GitHub Actions are enabled in the repository by checking the settings at github.com/username/repository_name/settings/actions.
+Setting Up a "Hello, World!" Action:
+Click on "Actions" in the repository landing page to set up the first GitHub Action.
+Search for a "Simple Workflow" and click "Configure" to create or edit a YAML file for the workflow.
+**Creating the YAML Workflow:**
+Workflows should be saved in the .github/workflows folder.
+Create a YAML workflow to print "Hello, World!" and commit the changes.
+**Triggering the Workflow:**
+The commit message is entered, and clicking "Commit changes" kicks off the workflow.
+**Inspecting the GitHub Actions Run:**
+The commit SHA displays an amber circle (ongoing), green tick (successful), or red cross (failed).
+In this case, the pipeline succeeded.
+**Viewing Successful Workflows:**
+Clicking "Actions" in the top menu shows the successful workflow.
+Jobs in the workflow are listed, including the "build" job.
+**Inspecting Job Logs:**
+Clicking on the "build" job shows output logs from the steps, including the output of the echo commands and additional setup/cleanup steps.
