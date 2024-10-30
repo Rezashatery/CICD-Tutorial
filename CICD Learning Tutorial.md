@@ -68,3 +68,35 @@ Job: A set of steps in a workflow that can run independently and in parallel. Jo
 A push event can trigger a workflow where a job runs on an Ubuntu Linux runner, performing two steps: checking out the repository and running a Python application.
 **Overview of Components:**
 A GitHub repository contains a workflow file in the .github/workflows directory, defining the workflow triggered by events (like pushes or pull requests). The workflow can execute multiple jobs, which are made up of steps, allowing various actions or scripts to run on the same runner machine and optionally produce output artifacts.
+
+
+**Introduction to Intermediate YAML:**
+The focus is on expanding understanding of YAML for effective use with GitHub Actions.
+Multiline Strings:
+**Block Scalar Format:**
+Multiline strings can be represented using Block Scalar Strings, which preserve formatting (line breaks and indentation).
+Useful for code snippets, log messages, and configurations in ML CI/CD workflows.
+**Style Indicators:**
+Literal Style: Preserves line breaks and indentation, ideal for writing shell commands.
+**Example:**
+Shows how literal style maintains new lines and indentation, except for the last line controlled by chomping indicators.
+**Fold Style:**
+This style removes line breaks, converting them into spaces for better readability.
+**Example:**
+Demonstrates how fold style collapses line breaks but preserves breaks followed by blank lines.
+**Chomping Indicators:**
+Special instructions that dictate whether to keep or remove extra blank lines at the end of multiline text.
+**Default Mode (Clip):**
+Adds a single newline at the end without needing a symbol.
+**Strip Indicator:** 
+Removes all newlines at the end of the block.
+**Keep Indicator:** 
+Retains all newlines at the end.
+**Dynamic Value Injection:**
+Although not standard in YAML, expressions serve as placeholders for dynamic values that change during processing.
+Typically formatted with curly braces and a leading dollar sign (e.g., ${value}).
+Allows referencing environment variables or other YAML fields but may not be supported by all parsers.
+**Multi-document YAML:**
+Allows storing multiple independent YAML documents within a single file, separated by three dashes (---).
+Useful for organizing related documents together. Each document is a complete YAML structure.**Summary:**
+Review of the symbols covered, emphasizing that chomping indicators follow style indicators in YAML.
