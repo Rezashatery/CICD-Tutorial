@@ -46,9 +46,23 @@ YAML relies on mappings, sequences, and scalars for data organization.
 The editor layout includes folders (pink box), open files (blue box), and a terminal for bash commands (green box).
 
 
-
-
-
-
-
-    • Conclusion: In this section, summarize your main points and restate your enthusiasm for the program. Thank the admissions committee for their time and consideration.
+### Introduction to GitHub Actions:
+GitHub Actions (GHA) is a popular CI/CD platform used for automation in software development. **What is GitHub Actions?:**
+GHA is an integrated automation and CI/CD system within GitHub that automates build, test, and deployment pipelines in repositories.
+The "pipeline" represents a sequence of interconnected steps or stages in the development process.
+**Analogy with Car Assembly Line:**
+GHA automates software development processes like tasks in a car assembly line, ensuring efficient workflow.
+**Automated Steps:**
+Developers can create automated steps for tasks like code building, testing, and deployment, mirroring the sequential process of an assembly line.
+**GHA Components:**
+Event: An action within a repository (e.g., pull request, issue creation, commit push) that triggers a workflow.
+**Workflow:**
+A customizable automated process defined in a YAML file, which can execute multiple jobs. Workflows are stored in the .github/workflows directory and can be triggered by events, manually initiated, or scheduled.
+**Steps and Actions:**
+Steps: Individual units of work executed sequentially, dependent on previous steps, sharing data on the same compute machine.
+**Actions:**
+Custom applications for complex tasks, such as checking out a repository or commenting on pull requests.
+**Jobs and Runners:**
+Job: A set of steps in a workflow that can run independently and in parallel. Jobs are executed on compute machines called runners.
+**simple GHA Workflow Example:**
+A push event can trigger a workflow where a job runs on an Ubuntu Linux runner, performing two steps: checking out the repository and running a Python application.
