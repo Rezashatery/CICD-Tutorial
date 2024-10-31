@@ -23,7 +23,7 @@ CI/CD in ML also addresses the complexities of model reproducibility, pipeline t
 **Scope**: Covers data preparation, versioning, model development, evaluation, and hyperparameter tuning within CI/CD frameworks.
 **Summary**: Highlights the benefits of CI/CD in ML, including automation, reproducibility, enhanced testing, and efficient, reliable deployment.
 
-## Introduction to YAML:
+### Introduction to YAML:
 YAML is a human-readable data format used widely for configuration files, data exchange, and structuring data in applications.
 It provides an alternative to XML and is similar in function to JSON, aiming to facilitate interoperability across languages and applications.
 YAML files use .yaml or .yml extensions and are heavily utilized in CI/CD tools, such as GitHub Actions and Data Version Control, to define workflows.
@@ -132,3 +132,33 @@ Clicking "Actions" in the top menu shows the successful workflow.
 Jobs in the workflow are listed, including the "build" job.
 **Inspecting Job Logs:**
 Clicking on the "build" job shows output logs from the steps, including the output of the echo commands and additional setup/cleanup steps.
+
+### Configuring GitHub Actions:
+
+**Triggering on Pull Request:**
+The video demonstrates extending a GitHub Actions workflow to trigger on a pull request.
+**Shared Repository Model:**
+In collaborative repositories, feature or topic branches are created for individual changes.
+Developers create pull requests for code review, allowing CI/CD tools to automatically test code quality, security, and compatibility, providing early feedback before merging to the main branch.
+**Creating a Feature Branch:**
+To create a feature branch, click "Branch" on the repository landing page, then "New branch" to name and activate the branch.
+**Adding Code to the Repository:**
+In the feature branch, add a Python script (e.g., hello_world.py) that prints a message and the current time, then commit it.
+**Configuring Workflow Event:**
+Modify the workflow event to trigger on pull_request instead of push.
+Set the target branch (main) for the pull request where the code will merge.
+**Actions Syntax:**
+Actions are specified under the steps field with the uses key.
+Syntax includes organization/username, repository name, and version number (e.g., @v3).
+Additional arguments are defined using the with key. Actions are available in GitHub Marketplace and from private sources.
+**Configuring Workflow Steps:**
+Use separate steps to "Check out" the repository (checkout action) and set up the Python environment (setup-python action).
+Specify the version of each action (e.g., checkout@v3, setup-python@v4) and select the Python version with python-version.
+**Final Workflow:**
+workflow uses on-pull_request as the event trigger.
+It includes checkout and setup-python steps, followed by running the Python script.
+Creating Pull Request and Running Workflow:
+Commit changes to the feature branch, then create a pull request targeting the main branch.
+The workflow triggers automatically, and clicking "Details" opens the logs page.
+**Inspecting Workflow Logs:**
+In the logs, view the checkout and setup-python steps along with the successful execution of the Python script.
