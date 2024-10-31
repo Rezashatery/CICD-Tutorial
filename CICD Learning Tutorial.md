@@ -187,3 +187,35 @@ To comment on a pull request, permissions are elevated using permissions: pull-r
 The GITHUB_TOKEN is used within the with key in an action (e.g., thollander/action-comment-pull-request) to post a comment.
 This example shows the GitHub Actions bot adding a "Hello world" comment on the pull request.
 
+
+### Model Training with GitHub Actions
+The video demonstrates how to set up a GitHub Actions workflow to train machine learning (ML) models.
+Dataset: Weather Prediction in Australia:
+A binary classification dataset on Australian weather is used, with features including 5 categorical (e.g., location, wind direction, rain today) and 17 numerical (e.g., temperatures, wind speeds).
+**Modeling Workflow:**
+The workflow includes:
+        ◦ Converting categorical to numerical data,
+        ◦ Handling missing values,
+        ◦ Standardizing features,
+        ◦ Splitting data for training and testing,
+        ◦ Training a Random Forest Classifier with fixed hyperparameters, and
+        ◦ Reporting performance metrics like precision and recall.
+**Data Preparation: Target Encoding:**
+Target encoding is used for converting categorical variables by replacing feature values with their average in the target column, especially useful over one-hot encoding for large categorical features.
+**Imputing and Scaling:**
+Missing values are filled using the mean, and the data is scaled to zero mean and unit standard deviation.
+**Training:**
+The dataset is split into training and test sets using train_test_split, and a RandomForestClassifier model is trained for accuracy, robustness, and handling multiple features.
+**Metrics:**
+Key performance metrics reported are accuracy, precision, recall, and F1 score.
+**Plots:**
+A confusion matrix heatmap is generated to display true positives, false positives, true negatives, and false negatives.
+**GitHub Actions Workflow:**
+The model training workflow is triggered upon pull requests to the main branch.
+Continuous Machine Learning (CML), an open-source tool for ML CI/CD, is used for provisioning, training, evaluation, and generating visual reports automatically for each pull request.
+**CML Commands:**
+The workflow YAML file initializes the setup-cml action, runs the training code, reads results from results.txt and a graph image, and writes them to a markdown file. This is posted as a comment on the PR with the cml comment create command and GITHUB_TOKEN.
+**Output:**
+The workflow, triggered by a pull request, posts a comment in the PR with model evaluation details.
+
+
