@@ -162,3 +162,28 @@ Commit changes to the feature branch, then create a pull request targeting the m
 The workflow triggers automatically, and clicking "Details" opens the logs page.
 **Inspecting Workflow Logs:**
 In the logs, view the checkout and setup-python steps along with the successful execution of the Python script.
+
+### Environment Variables and Secrets in GitHub Actions:
+**Contexts:**
+Contexts in GitHub Actions provide predefined environment variables that contain information about the repository, workflow, event, and environment.
+These contexts include github, env, secrets, job, and runner.
+Contexts are accessed with double curly braces and a leading dollar sign, e.g., ${{ github }}.
+**Variables:**
+Variables in GitHub Actions are stored as plain text, suitable for non-sensitive data (e.g., compiler flags, usernames).
+They can be declared using the env keyword in the YAML file and accessed via the env context.
+Variable scope is determined by where they are declared (workflow, job, or step level).
+**Secrets:**
+Secrets are used for sensitive data (e.g., passwords, API keys) and are encrypted in storage.
+Secrets are accessed using the secrets context and can be set in the YAML file under env or with keys.
+GitHub Actions hides secret values from logs for security.
+**Setting Secrets:**
+To add a repository-level secret, go to Settings > Secrets and Variables in the repository, then click Actions > New Repository Secret.
+**GITHUB_TOKEN Secret:**
+GitHub provides a built-in GITHUB_TOKEN secret for every workflow run, allowing interaction with the GitHub API.
+This token enables actions such as cloning the repository, managing issues and pull requests, and commenting.
+The GITHUB_TOKEN permissions adjust automatically based on the workflow event, but permissions can also be customized as needed.
+**Example: Commenting on a Pull Request:**
+To comment on a pull request, permissions are elevated using permissions: pull-requests.
+The GITHUB_TOKEN is used within the with key in an action (e.g., thollander/action-comment-pull-request) to post a comment.
+This example shows the GitHub Actions bot adding a "Hello world" comment on the pull request.
+
