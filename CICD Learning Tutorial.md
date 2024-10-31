@@ -218,4 +218,34 @@ The workflow YAML file initializes the setup-cml action, runs the training code,
 **Output:**
 The workflow, triggered by a pull request, posts a comment in the PR with model evaluation details.
 
+### Versioning Datasets with Data Version Control (DVC):
+This topic covers dataset versioning in machine learning projects, essential for tracking data changes, replicating training, and supporting collaboration.
+**Why Versioning Data Matters:**
+Data versioning enables:
+    ◦ Replicating model training,
+    ◦ Iterating on model architectures,
+    ◦ Collaboration on consistent data,
+    ◦ Diagnosing performance issues linked to specific datasets,
+    ◦ Monitoring data changes requiring retraining, and
+    ◦ Auditing data usage in regulated fields like finance and healthcare.
+**Data Version Control (DVC):**
+DVC is an open-source tool for versioning data, working similarly to Git but optimized for data. It allows unified management of code and data changes.
+**DVC Storage:**
+While Git tracks data versions, DVC stores actual data files remotely (e.g., via SSH, web APIs, cloud providers, or locally). DVC can be installed using pip.
+**Initializing DVC:**
+After initializing Git with git init, run dvc init to set up DVC, which creates files such as:
+    ◦ .gitignore to exclude DVC files from Git,
+    ◦ config for settings (e.g., remote storage), and
+    ◦ tmp for cache and logs.
+**Adding Files to DVC:**
+Use dvc add <file> to track data files. This generates .dvc placeholder files containing metadata, allowing Git to version data indirectly. The DVC cache stores the actual data files.
+DVC Data Files:
+**.dvc files store metadata:**
+    ◦ outs: Output data files,
+    ◦ md5: MD5 checksum for integrity,
+    ◦ size: File size in bytes,
+    ◦ hash: Type of hash used (MD5), and
+    ◦ path: File path (e.g., data.csv).
+**Summary:**
+DVC provides a lightweight, Git-integrated solution for data versioning. Initialize with dvc init, track files with dvc add, and use .dvc files for metadata and version control.
 
