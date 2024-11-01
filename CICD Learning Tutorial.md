@@ -322,3 +322,39 @@ Track plot data files (not images) in dvc.yaml under plots, with templates for p
 Use dvc plots show to generate plots (output as HTML with interactive features) and dvc plots diff to compare plot differences across branches.
 **Comparing Specific Plots:**
 Compare confusion matrices or ROC curves by specifying the target plot in dvc.yaml and the branch to compare it to. For ROC curves, calculate TPR and FPR using scikit-learn, then plot with a linear template.
+
+
+### Hyperparameter Tuning
+
+**Hyperparameter Tuning Overview:**
+Hyperparameter tuning optimizes model performance by searching predefined parameter ranges to
+achieve the best metrics (e.g., accuracy). Tuning is ideally loosely coupled with model 
+training, so the training job can run independently of tuning updates. Both tuning and training are affected by upstream data changes.
+**Integrating Hyperparameters in Training Code:**
+Training code modifications involve reading hyperparameters from a parameter file, 
+which can vary depending on the model. This allows the model to use the best parameters 
+found during tuning.
+**Grid Search Cross-Validation (CV) for Tuning:**
+Grid Search CV divides training data into N folds. For each parameter set,
+the model trains on N-1 folds, validating on the remaining fold. The best parameter
+combination is saved for the training job to read.
+**Configuring DVC YAML for Hyperparameter Tuning:**
+In dvc.yaml, hyperparameter tuning stages depend on datasets, config files, and scripts.
+Performance tracking (e.g., in markdown) avoids tracking the best parameter file directly,
+as changes in that file could unintentionally retrigger tuning.
+**Triggering Individual Stages in DVC:**
+DVC supports running individual stages with dvc repro <stage>. Using -f forces updates
+for specific steps, such as updating the best parameters after tuning.
+Both training and tuning stages depend on preprocessing, so upstream data changes
+retrigger these stages.
+**Hyperparameter Run Output:**
+Tuning produces tabular outputs with scores and parameter combinations, accessible via
+the cv_results property of the Grid Search object, and can be formatted into a markdown
+table for pull requests (PRs).
+**Summary of Triggering Model Training:**
+There are two methods to start training:
+    ◦ With Tuning: Set the correct branch, adjust search configurations, and force-run 
+      the DVC pipeline to update the best parameters and PR with Continuous Machine Learning
+      (CML).
+    ◦ Without Tuning: Manually edit the parameter file in a branch prefixed with "train/", 
+      open a PR, and run the model training in GitHub Actions.
