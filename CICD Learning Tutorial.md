@@ -249,3 +249,26 @@ DVC Data Files:
 **Summary:**
 DVC provides a lightweight, Git-integrated solution for data versioning. Initialize with dvc init, track files with dvc add, and use .dvc files for metadata and version control.
 
+### DVC Remotes
+**Interacting with DVC Remotes:**
+This video explores DVC's capabilities for managing storage and accessing large datasets through external remotes.
+**Understanding DVC Remotes:**
+Git and GitHub face limitations for large data files, which DVC solves using external storage locations called DVC remotes. Benefits include:
+    ◦ Syncing large files and directories,
+    ◦ Creating a centralized data repository for collaboration,
+    ◦ Archiving dataset and model versions while saving local storage.
+Supported remotes include cloud providers like AWS, GCP, Azure, and on-prem storage options via SSH or HTTP.
+**Setting Up Remotes:**
+DVC remotes can be added with the dvc remote command, updating .dvc/config. For instance, an S3 bucket named "mybucket" can be added as a remote and customized with dvc remote modify. Settings are saved in .dvc/config.
+**Local and Default Remotes:**
+Local remotes offer fast access and control and are ideal for local testing. Options include system directories, network-attached storage, and external drives.
+To set a default remote, use the -d flag with dvc remote add. Commands like dvc pull, dvc push, and dvc fetch will then use this default remote.
+**Uploading and Retrieving Data:**
+dvc push and dvc pull move data between remote storage and local workspace, analogous to git push and git pull. These commands support data sharing across environments and versioning of datasets, models, and metrics.
+Data can be pushed for individual files or entire caches, with an option to specify remotes using -r. If unspecified, the default remote is used.
+**Tracking Data Changes:**
+For data updates:
+    ◦ Use dvc add to stage changes in the DVC cache and update the corresponding .dvc file,
+    ◦ Commit changes to Git with git add and git commit,
+    ◦ Push metadata to Git with git push,
+    ◦ Push the updated data file to the DVC remote with dvc push.
