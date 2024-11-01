@@ -299,3 +299,26 @@ DVC skips unchanged steps during reruns, utilizing caching, which is especially 
 The dvc dag command visualizes the pipeline stages as a connected graph, aiding in understanding workflow structure.
 **Summary:**
 DVC pipelines streamline ML workflows by identifying necessary steps for execution and using caching to avoid rerunning unchanged steps. Key files include dvc.yaml for pipeline setup and dvc.lock to log the current pipeline state, enabling CI/CD workflows in ML projects.
+
+
+
+### Configuring Metrics in DVC YAML
+
+**DVC for Tracking Metrics and Plots:**
+DVC can track model performance metrics, visualize these metrics with plots, and compare performance across different experiments. This helps identify the best model for a machine learning task.
+**Configuring Metrics in DVC YAML:**
+To track metrics, specify the metrics file (e.g., metrics.json) under a metrics key in the dvc.yaml file (not under outs). Set cache: false to track this file with Git rather than DVC.
+**Querying and Comparing Metrics:**
+Use dvc metrics show to display metrics in the terminal and dvc metrics diff to compare metrics across experiments, e.g., after changing hyperparameters and rerunning dvc repro.
+**Setting up DVC in GitHub Actions:**
+Add setup-dvc GitHub Action for automated model comparisons. Replace Python scripts with the DVC pipeline commands and use dvc metrics show to print metrics as a markdown table in pull request comments.
+**Pipeline Metrics in GitHub:**
+Compare metrics to the main branch by fetching the main branch state and running dvc metrics diff. Generate a comment with Continuous Machine Learning (CML) to display results in pull requests.
+**Plot Types Supported by DVC:**
+DVC supports several plot types, including scatter plots, line plots, confusion matrices, and horizontal bar plots.
+**Configuring Plots in DVC YAML:**
+Track plot data files (not images) in dvc.yaml under plots, with templates for plot styles, axis labels, and column names. Setting cache: false for predictions files ensures tracking through Git.
+**Generating and Comparing Plots:**
+Use dvc plots show to generate plots (output as HTML with interactive features) and dvc plots diff to compare plot differences across branches.
+**Comparing Specific Plots:**
+Compare confusion matrices or ROC curves by specifying the target plot in dvc.yaml and the branch to compare it to. For ROC curves, calculate TPR and FPR using scikit-learn, then plot with a linear template.
