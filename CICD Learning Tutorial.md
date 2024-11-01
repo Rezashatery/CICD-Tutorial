@@ -272,3 +272,30 @@ For data updates:
     ◦ Commit changes to Git with git add and git commit,
     ◦ Push metadata to Git with git push,
     ◦ Push the updated data file to the DVC remote with dvc push.
+
+
+### DVC Pipelines
+
+
+**DVC Pipelines Overview:**
+DVC pipelines offer a structured way to reproduce machine learning (ML) workflows through a series of defined steps, or stages.
+**Need for a Data Pipeline:**
+In ML workflows, data needs processing (e.g., filtering, cleaning, transformation) before model training. DVC pipelines streamline this by allowing steps to be rerun only when dependencies change. This creates a dependency graph, or Directed Acyclic Graph (DAG), where each step depends on the output of the previous.
+**DVC Pipelines Structure:**
+DVC pipelines are defined in the dvc.yaml file, with stages including:
+    ◦ deps (dependencies) such as raw data or scripts,
+    ◦ cmd (command) to execute the stage,
+    ◦ outs (outputs) like processed data, model artifacts, and metrics.
+DVC pipelines can also integrate into GitHub Actions for workflow automation in ML projects.
+**Defining Pipeline Stages:**
+The dvc stage add command is used to create stages in dvc.yaml. Each stage specifies its name (-n), dependencies (-d), outputs (-o), and execution command.
+**Dependency Graphs:**
+Stages, like preprocessing and training, can be connected to form a dependency graph, with output from one stage serving as input for another.
+**Reproducing a Pipeline:**
+Using dvc repro, the pipeline is reproduced sequentially. A dvc.lock file is generated, capturing the pipeline state and is typically committed to Git to track current pipeline results.
+**Caching Results:**
+DVC skips unchanged steps during reruns, utilizing caching, which is especially beneficial for complex DAGs with multiple dependencies.
+**Visualizing the Pipeline:**
+The dvc dag command visualizes the pipeline stages as a connected graph, aiding in understanding workflow structure.
+**Summary:**
+DVC pipelines streamline ML workflows by identifying necessary steps for execution and using caching to avoid rerunning unchanged steps. Key files include dvc.yaml for pipeline setup and dvc.lock to log the current pipeline state, enabling CI/CD workflows in ML projects.
