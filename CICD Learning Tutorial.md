@@ -358,3 +358,40 @@ There are two methods to start training:
       (CML).
     ◦ Without Tuning: Manually edit the parameter file in a branch prefixed with "train/", 
       open a PR, and run the model training in GitHub Actions.
+
+
+
+### workflow for hyperparameter tuning with DVC:
+
+**Separate Branches for Hyperparameter Tuning and Training:**
+Hyperparameter tuning and training workflows are loosely coupled to run independently, 
+each in its own branch. A conditional in GitHub Actions allows the hyperparameter tuning 
+workflow to run in branches prefixed with "hp_tune/". A successful tuning job then opens a
+new PR with the best parameters in the configuration file to trigger a training job on the
+full dataset.
+Using Conditionals in GitHub Actions:
+A conditional statement in the GitHub Actions YAML file controls workflow execution
+based on branch naming conventions (e.g., "hp_tune/"). This prevents using a dollar sign
+and curly braces as GitHub automatically evaluates if conditions in YAML expressions.
+**Setting Workflow Permissions for PRs:**
+Workflow permissions need to be configured in the repository’s settings to allow
+GitHub Actions to create and approve PRs.
+**Automated PR for Training:**
+The hyperparameter tuning job uses the cml pr create command to open a new PR with the
+updated parameters for training. The PR is created in a "train/" branch with a
+commit SHA hash, which is helpful in tracking and verifying the hyperparameter tuning outcomes.
+**Avoiding Recursion in GitHub Actions with GITHUB_TOKEN:**
+Tasks executed with the repository’s GITHUB_TOKEN do not trigger new workflows
+automatically to avoid recursion. Using a personal access token can help work around
+this limitation, or alternatively, manually inspecting results before training can be
+set up for safer runs.
+**Manual Trigger for Training Job:**
+To manually trigger training, the branch can be checked out locally, followed by an
+empty commit and force push to initiate training. A separate branch prefixed with 
+"train/" can also be created, containing changes, to open a PR and start training without
+executing tuning.
+Independent Training Job Setup:
+After confirming the best parameters, a PR initiates the independent training job,
+which can print or compare metrics and plots. Creating a new branch prefixed with
+"train/" and a PR ensures the workflow initiates only the training step,
+leaving hyperparameter tuning out of the pipeline.
