@@ -1,7 +1,8 @@
 This the summerization of CI/CD tutorial. You can Find everything on the Tutorial.
-Versioning Datasets with Data Version Control (DVC)
 
-### Importance of Data Versioning
+### Versioning Datasets with Data Version Control (DVC)
+
+Importance of Data Versioning
 
 Data versioning is critical in machine learning (ML) for:
 
