@@ -1,6 +1,7 @@
 This the summerization of CI/CD tutorial. You can Find everything on the Tutorial.
 Versioning Datasets with Data Version Control (DVC)
-Importance of Data Versioning
+
+### Importance of Data Versioning
 
 Data versioning is critical in machine learning (ML) for:
 
@@ -10,7 +11,7 @@ Data versioning is critical in machine learning (ML) for:
     Diagnostics: Enables pinpointing dataset-specific performance issues.
     Retraining & Compliance: Monitors data changes and audits usage, crucial in fields like healthcare and finance.
 
-Data Version Control (DVC) Overview
+### Data Version Control (DVC) Overview
 
 DVC, an open-source tool, version-controls datasets similarly to Git but optimized for large data files, separating the actual data storage from versioned metadata.
 DVC Storage and File Structure
@@ -18,7 +19,7 @@ DVC Storage and File Structure
     Remote Storage: DVC stores data files in external storage (cloud providers, SSH, local).
     File Setup: Running dvc init sets up files for configurations and cache management.
 
-Adding Data with DVC
+### Adding Data with DVC
 
 Adding files with dvc add <file> generates .dvc metadata files in Git while storing data separately in the DVC cache. Metadata files include:
 
@@ -27,7 +28,7 @@ Adding files with dvc add <file> generates .dvc metadata files in Git while stor
     size: File size.
     path: Data file path.
 
-DVC Remotes
+### DVC Remotes
 Why Use DVC Remotes?
 
 DVC remotes address Git limitations by storing large files externally, enabling:
@@ -42,7 +43,7 @@ Remote Configuration
     Using Remotes: Commands like dvc push and dvc pull move data between local storage and remote locations.
     Local Remotes: Ideal for rapid local testing and fast access.
 
-DVC Pipelines
+### DVC Pipelines
 Why Pipelines in ML?
 
 DVC pipelines simplify workflows by breaking them into reproducible steps (data cleaning, model training) defined as pipeline stages.
@@ -52,7 +53,7 @@ Defining Pipelines
     Running Pipelines: dvc repro re-runs stages, updating only those with changed dependencies.
     Visualization: dvc dag generates a Directed Acyclic Graph (DAG) for pipeline steps, aiding workflow overview.
 
-Configuring Metrics in DVC YAML
+### Configuring Metrics in DVC YAML
 Tracking Model Performance Metrics
 
 DVC supports tracking and visualizing metrics over model versions, ideal for comparing performance and identifying the best model.
@@ -62,7 +63,7 @@ Configuring Metrics
     Commands for Comparison: dvc metrics show for metric display; dvc metrics diff for comparing versions.
     GitHub Integration: Automatically generate metric tables in pull requests for easy comparison.
 
-Plotting Capabilities
+### Plotting Capabilities
 
 DVC supports various plot types (e.g., line plots, confusion matrices) for comprehensive analysis across experiments.
 Hyperparameter Tuning
@@ -75,7 +76,7 @@ DVC YAML Configuration for Tuning
     Running Stages Individually: Use dvc repro <stage> to execute specific stages, re-running only dependent steps when required.
     Result Tracking: Outputs like scores or parameter sets are accessible via properties (e.g., cv_results in Grid Search).
 
-Hyperparameter Tuning Workflow with DVC
+### Hyperparameter Tuning Workflow with DVC
 Branching and GitHub Actions for Automation
 
 Separating tuning and training stages in different branches allows workflows to run independently, avoiding unnecessary retraining.
